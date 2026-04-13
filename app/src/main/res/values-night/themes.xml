@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ArrowVPN" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/arrow_black</item>
+        <item name="android:statusBarColor">@color/arrow_black</item>
+        <item name="android:navigationBarColor">@color/arrow_black</item>
+        <item name="android:navigationBarDividerColor">@color/arrow_black</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <style name="Theme.ArrowVPN" parent="Base.Theme.ArrowVPN" />
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="arrow_black">#FF000000</color>
+    <color name="arrow_surface">#FF121216</color>
+    <color name="arrow_surface_secondary">#F20F0F14</color>
+    <color name="arrow_surface_tertiary">#FF1A1A22</color>
+    <color name="arrow_border">#1FFFFFFF</color>
+    <color name="arrow_text_primary">#FFFFFFFF</color>
+    <color name="arrow_text_secondary">#FF7F8C8D</color>
+    <color name="arrow_accent_purple">#FF6A5ACD</color>
+    <color name="arrow_success">#FF2ECC71</color>
+    <color name="arrow_warning">#FFF39C12</color>
+    <color name="arrow_error">#FFE74C3C</color>
+    <color name="arrow_link_blue">#FF4DA3FF</color>
+    <color name="arrow_toast_text">#FFFFFFFF</color>
+    <color name="arrow_toast_success">#FF2ECC71</color>
+    <color name="arrow_toast_error">#FFE74C3C</color>
+</resources>

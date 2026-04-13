@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">Arrow VPN</string>
+    <string name="app_version_fallback">1.0</string>
+    <string name="clipboard_label">ArrowVPN</string>
+
+    <string name="cd_support">Soporte</string>
+    <string name="cd_settings">Ajustes</string>
+    <string name="cd_app_logo">Logo de la app</string>
+
+    <string name="login_title_credentials">Ingresa tus credenciales Stealth</string>
+    <string name="login_button_verify_access">Verificar Acceso</string>
+    <string name="login_title_validating_access">Validando acceso Stealth...</string>
+    <string name="login_button_verifying">Verificando...</string>
+    <string name="login_title_error_format">❌ %1$s</string>
+    <string name="login_uuid_placeholder">ID de Usuario (UUID)</string>
+    <string name="login_password_placeholder">Contraseña</string>
+    <string name="login_cancel">Cancelar</string>
+
+    <string name="session_active">Sesión activa</string>
+    <string name="session_inactive">Sesión inactiva</string>
+    <string name="action_login">Iniciar sesión</string>
+    <string name="mode_vpn">VPN</string>
+    <string name="mode_proxy">PROXY</string>
+
+    <string name="server_current_location">Ubicación Actual</string>
+    <string name="server_loading_nodes">Cargando Nodos...</string>
+    <string name="cd_close_server_list">Cerrar lista</string>
+    <string name="cd_open_server_list">Abrir lista</string>
+    <string name="server_live_latency">Latencia en vivo</string>
+    <string name="server_live_latency_updating">Latencia en vivo (actualizando...)</string>
+    <string name="cd_refresh_latencies">Refrescar latencias</string>
+    <string name="server_out_of_service">Fuera de servicio</string>
+    <string name="server_ping_ms">%1$d ms</string>
+
+    <string name="support_title">Soporte Técnico</string>
+    <string name="support_item_app_version">Versión de App</string>
+    <string name="support_item_session_id">ID de Sesión</string>
+    <string name="support_item_help_center">Centro de Ayuda</string>
+    <string name="support_help_email">support@arrow-x.org</string>
+    <string name="support_app_version_value">v%1$s</string>
+
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_section_general">GENERAL</string>
+    <string name="settings_section_advanced_security">SEGURIDAD AVANZADA</string>
+    <string name="settings_minimize_to_tray">Minimizar a la bandeja</string>
+    <string name="settings_auto_connect">Conexión automática</string>
+    <string name="settings_kill_switch">Kill Switch (Bloqueo)</string>
+
+    <string name="credentials_title">Mis Credenciales</string>
+    <string name="credentials_copy_hint">Haz clic para copiar al portapapeles</string>
+    <string name="credentials_section_vless_nodes">NODOS VLESS (INDIVIDUAL)</string>
+    <string name="credentials_copy_link">Copiar Enlace</string>
+
+    <string name="action_close">Cerrar</string>
+    <string name="action_back">Volver</string>
+    <string name="action_back_to_settings">Volver a Ajustes</string>
+    <string name="action_open_credentials">Mis Credenciales</string>
+    <string name="action_logout">Cerrar Sesión</string>
+    <string name="action_copy">Copiar</string>
+    <string name="action_copy_subscription">Copiar Suscripción General</string>
+
+    <string name="power_disconnect">DESCONECTAR</string>
+    <string name="power_connecting">CONECTANDO...</string>
+    <string name="power_turning_off">APAGANDO...</string>
+    <string name="power_connect">CONECTAR</string>
+    <string name="cd_disconnect">Desconectar</string>
+    <string name="cd_connect">Conectar</string>
+
+    <string name="toast_enter_all_fields">Ingresa todos los datos</string>
+    <string name="toast_access_verified">Acceso verificado</string>
+    <string name="toast_disconnect_to_change_mode">Desconéctate para cambiar de modo</string>
+    <string name="toast_disconnect_to_change_server">Desconéctate para cambiar de servidor</string>
+    <string name="toast_login_first">Inicia sesión primero</string>
+    <string name="toast_kill_switch_disable_to_disconnect">Kill Switch activo: desactívalo para desconectar</string>
+    <string name="toast_stopping_servers">Deteniendo servidores...</string>
+    <string name="toast_vpn_permission_denied">Permiso VPN denegado</string>
+    <string name="toast_no_server_selected">No hay servidor seleccionado</string>
+    <string name="toast_connection_established">Conexión establecida</string>
+    <string name="toast_kill_switch_reconnecting">Kill Switch activo: reconectando...</string>
+    <string name="toast_enable_kill_switch_requires_login">Inicia sesión para activar protección con Kill Switch</string>
+    <string name="toast_session_closed">Sesión cerrada</string>
+    <string name="toast_no_active_session">No hay sesión activa</string>
+    <string name="toast_copy_session_id_success">✓ ID de sesión copiado</string>
+    <string name="toast_copy_support_email_success">✓ Correo de soporte copiado</string>
+    <string name="toast_copy_subscription_success">✓ Link de suscripción copiado</string>
+    <string name="toast_copy_vless_success">✓ VLESS de %1$s copiado</string>
+
+    <string name="status_kill_switch_starting">Kill Switch activo: iniciando protección...</string>
+    <string name="status_auto_connect_starting">Conexión automática iniciando...</string>
+    <string name="status_stopping_servers">Deteniendo Servidores...</string>
+    <string name="status_protection_inactive">Protección Inactiva</string>
+    <string name="status_starting_tun">Iniciando modo TUN...</string>
+    <string name="status_starting_proxy">Iniciando modo Proxy...</string>
+    <string name="status_vpn_active">VPN Activa</string>
+    <string name="status_proxy_active">Proxy Activo</string>
+
+    <string name="splash_initializing_secure_system">Inicializando sistema seguro...</string>
+    <string name="splash_restoring_local_session">Restaurando sesión y configuración local...</string>
+    <string name="splash_syncing_session_servers">Sincronizando sesión y servidores...</string>
+    <string name="splash_ready">Listo</string>
+
+    <string name="service_notification_title">Arrow VPN</string>
+    <string name="service_notification_connecting">Protección segura en curso</string>
+    <string name="service_notification_active">VPN activa</string>
+    <string name="service_channel_name">Arrow VPN</string>
+    <string name="service_channel_description">Notificaciones del túnel VPN</string>
+</resources>
