@@ -1,18 +1,23 @@
 package org.arrowx.vpn.data.repository
 
+import android.content.Context
+import android.os.Build
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
+import org.arrowx.vpn.R
 import org.arrowx.vpn.data.local.AppPreferences
 import org.arrowx.vpn.data.remote.ArrowApiClient
 import org.arrowx.vpn.domain.model.AppSettings
 import org.arrowx.vpn.domain.model.ConnectionMode
 import org.arrowx.vpn.domain.model.ServerNode
 import org.arrowx.vpn.domain.model.StartupData
+import java.util.Locale
 
 class ArrowRepositoryImpl(
+    private val context: Context,
     private val apiClient: ArrowApiClient,
     private val preferences: AppPreferences
 ) : ArrowRepository {
@@ -33,7 +38,7 @@ class ArrowRepositoryImpl(
         when {
             loginAttempt == null -> cachedData
             loginAttempt.isValid -> {
-                val syncedServers = loginAttempt.servers.ifEmpty { cachedData.servers }
+                val syncedServers = localizeServers(loginAttempt.servers.ifEmpty { cachedData.servers })
                 if (loginAttempt.servers.isNotEmpty()) {
                     preferences.saveServers(syncedServers)
                 }
@@ -65,7 +70,7 @@ class ArrowRepositoryImpl(
         val uuid = uuidDeferred.await()
         val password = passwordDeferred.await()
         val settings = settingsDeferred.await()
-        val servers = cachedServersDeferred.await().ifEmpty { defaultServers() }
+        val servers = localizeServers(cachedServersDeferred.await().ifEmpty { defaultServers() })
 
         val selectedServerId = resolveSelectedServer(
             preferredServerId = selectedServerDeferred.await(),
@@ -90,19 +95,20 @@ class ArrowRepositoryImpl(
                 servers = emptyList()
             )
         }
+        val localizedServers = localizeServers(result.servers)
 
         if (result.isValid) {
             preferences.saveCredentials(uuid, password)
-            if (result.servers.isNotEmpty()) {
-                preferences.saveServers(result.servers)
-                preferences.saveSelectedServerId(result.servers.first().id)
+            if (localizedServers.isNotEmpty()) {
+                preferences.saveServers(localizedServers)
+                preferences.saveSelectedServerId(localizedServers.first().id)
             }
         }
 
         LoginOutcome(
             isValid = result.isValid,
             message = result.message,
-            servers = result.servers
+            servers = localizedServers
         )
     }
 
@@ -136,6 +142,51 @@ class ArrowRepositoryImpl(
     override fun buildSubscriptionLink(uuid: String): String {
         return "https://arrow-x.org:5000/sub/$uuid"
     }
+
+    private fun localizeServers(servers: List<ServerNode>): List<ServerNode> {
+        if (servers.isEmpty()) return emptyList()
+        val locale = appLocale()
+        return servers
+            .map { server -> server.copy(name = localizeServerName(server, locale)) }
+            .sortedBy { it.name }
+    }
+
+    private fun localizeServerName(server: ServerNode, locale: Locale): String {
+        val normalizedCountryCode = server.countryCode.trim().uppercase(Locale.ROOT)
+        if (normalizedCountryCode.length == 2 &&
+            normalizedCountryCode.all { it.isLetter() } &&
+            normalizedCountryCode != "UN"
+        ) {
+            val localizedCountryName = Locale.Builder()
+                .setRegion(normalizedCountryCode)
+                .build()
+                .getDisplayCountry(locale)
+            if (localizedCountryName.isNotBlank() &&
+                !localizedCountryName.equals(normalizedCountryCode, ignoreCase = true)
+            ) {
+                return localizedCountryName
+            }
+        }
+
+        return when (server.id.lowercase(Locale.ROOT)) {
+            "germany" -> context.getString(R.string.de_server_node)
+            "austria" -> context.getString(R.string.at_server_node)
+            "sweden" -> context.getString(R.string.se_server_node)
+            "switzerland" -> context.getString(R.string.ch_server_node)
+            "usa", "us", "united_states", "unitedstates" -> context.getString(R.string.us_server_node)
+            else -> server.name
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun appLocale(): Locale {
+        val configuration = context.resources.configuration
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !configuration.locales.isEmpty) {
+            return configuration.locales[0]
+        }
+        return configuration.locale
+    }
+
     private fun resolveSelectedServer(
         preferredServerId: String?,
         servers: List<ServerNode>
@@ -149,31 +200,31 @@ class ArrowRepositoryImpl(
         return listOf(
             ServerNode(
                 id = "germany",
-                name = "Alemania",
+                name = context.getString(R.string.de_server_node),
                 countryCode = "DE",
                 vlessConfig = "vless://config-alemania-placeholder"
             ),
             ServerNode(
                 id = "austria",
-                name = "Austria",
+                name = context.getString(R.string.at_server_node),
                 countryCode = "AT",
                 vlessConfig = "vless://config-austria-placeholder"
             ),
             ServerNode(
                 id = "sweden",
-                name = "Suecia",
+                name = context.getString(R.string.se_server_node),
                 countryCode = "SE",
                 vlessConfig = "vless://config-suecia-placeholder"
             ),
             ServerNode(
                 id = "switzerland",
-                name = "Suiza",
+                name = context.getString(R.string.ch_server_node),
                 countryCode = "CH",
                 vlessConfig = "vless://config-suiza-placeholder"
             ),
             ServerNode(
                 id = "usa",
-                name = "USA",
+                name = context.getString(R.string.us_server_node),
                 countryCode = "US",
                 vlessConfig = "vless://config-usa-placeholder"
             )

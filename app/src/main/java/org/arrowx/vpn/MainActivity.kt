@@ -42,6 +42,7 @@ class MainActivity : ComponentActivity() {
     }
     private val repository by lazy {
         ArrowRepositoryImpl(
+            context = applicationContext,
             apiClient = ArrowApiClient(),
             preferences = AppPreferences(applicationContext)
         )

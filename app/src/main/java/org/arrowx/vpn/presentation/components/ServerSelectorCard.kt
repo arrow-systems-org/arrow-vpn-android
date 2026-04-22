@@ -210,16 +210,10 @@ fun ServerSelectorCard(
 private fun ServerFlag(
     countryCode: String
 ) {
-//    Box(
-//        modifier = Modifier
-//            .size(18.dp),
-//        contentAlignment = Alignment.Center,
-//    ) {
-        Text(
-            text = countryCode.toFlagEmoji(),
-            color = MaterialTheme.colorScheme.onSurface,
-            fontSize = 10.sp,
-            fontWeight = FontWeight.Bold,
-        )
-//    }
+    Text(
+        text = countryCode.toFlagEmoji(),
+        color = MaterialTheme.colorScheme.onSurface,
+        fontSize = 10.sp,
+        fontWeight = FontWeight.Bold,
+    )
 }
