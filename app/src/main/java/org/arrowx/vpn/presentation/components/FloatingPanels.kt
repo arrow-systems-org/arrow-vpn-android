@@ -74,7 +74,6 @@ fun FloatingPanels(
     onClose: () -> Unit,
     onOpenCredentials: () -> Unit,
     onBackToSettings: () -> Unit,
-    onToggleTray: (Boolean) -> Unit,
     onToggleAutoConnect: (Boolean) -> Unit,
     onToggleKillSwitch: (Boolean) -> Unit,
     onLogout: () -> Unit,
@@ -159,7 +158,6 @@ fun FloatingPanels(
                         PanelType.SETTINGS -> SettingsPanel(
                             settings = settings,
                             onOpenCredentials = onOpenCredentials,
-                            onToggleTray = onToggleTray,
                             onToggleAutoConnect = onToggleAutoConnect,
                             onToggleKillSwitch = onToggleKillSwitch,
                             onLogout = onLogout,
@@ -234,7 +232,6 @@ private fun SupportPanel(
 private fun SettingsPanel(
     settings: AppSettings,
     onOpenCredentials: () -> Unit,
-    onToggleTray: (Boolean) -> Unit,
     onToggleAutoConnect: (Boolean) -> Unit,
     onToggleKillSwitch: (Boolean) -> Unit,
     onLogout: () -> Unit,
@@ -273,11 +270,6 @@ private fun SettingsPanel(
                 textAlign = TextAlign.Start
             )
         }
-        ToggleRow(
-            title = stringResource(R.string.settings_minimize_to_tray),
-            checked = settings.minimizeToTray,
-            onCheckedChange = onToggleTray
-        )
         ToggleRow(
             title = stringResource(R.string.settings_auto_connect),
             checked = settings.autoConnect,

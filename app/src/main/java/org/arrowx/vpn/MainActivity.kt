@@ -125,7 +125,6 @@ class MainActivity : ComponentActivity() {
                         onOpenCredentialsPanel = mainViewModel::onOpenCredentialsPanel,
                         onBackToSettingsPanel = mainViewModel::onBackToSettingsPanel,
                         onClosePanels = mainViewModel::onClosePanels,
-                        onToggleTray = mainViewModel::onToggleTray,
                         onToggleAutoConnect = mainViewModel::onToggleAutoConnect,
                         onToggleKillSwitch = mainViewModel::onToggleKillSwitch,
                         onLogout = mainViewModel::onLogout,
@@ -146,7 +145,7 @@ class MainActivity : ComponentActivity() {
             window.isStatusBarContrastEnforced = false
             window.isNavigationBarContrastEnforced = false
         }
-        WindowCompat.getInsetsController(window, window.decorView)?.apply {
+        WindowCompat.getInsetsController(window, window.decorView).apply {
             isAppearanceLightStatusBars = false
             isAppearanceLightNavigationBars = false
         }
